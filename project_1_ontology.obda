@@ -1,92 +1,87 @@
 [PrefixDeclaration]
 :		http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/
-rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
-rdfs:		http://www.w3.org/2000/01/rdf-schema#
 owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
 xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
 
 [MappingDeclaration] @collection [[
 mappingId	patients
-target		:Patient{id} a :Patient ; rdfs:label {name}^^xsd:string .
+target		:Patient{id} a :Patient ; rdfs:label {name}^^xsd:string . 
 source		SELECT id, name FROM patient
 
 mappingId	doctors
-target		:Doctor{id} a :Doctor ; rdfs:label {name}^^xsd:string .
+target		:Doctor{id} a :Doctor ; rdfs:label {name}^^xsd:string . 
 source		SELECT id, name FROM doctor
 
 mappingId	instruments
-target		:{instrument} a :Instrument .
+target		:{instrument} a :Instrument . 
 source		SELECT DISTINCT instrument FROM item
 
-mappingId	instruments-self-report
-target		:{instrument} a :SelfReportInstrument .
-source		SELECT DISTINCT instrument FROM item WHERE instrument IN ('PHQ9', 'GAD7')
-
-mappingId	instruments-clinic-rated
-target		:{instrument} a :ClinicRatedInstrument .
-source		SELECT DISTINCT instrument FROM item WHERE instrument = 'HAMD17'
-
 mappingId	items
-target		:{code} a :Item ; :partOfInstrument :{instrument} ; :itemNumber {num}^^xsd:integer ; :itemDescription {description}^^xsd:string ; :minScore {min_score}^^xsd:integer ; :maxScore {max_score}^^xsd:integer ; :measuresSymptom :{symptom} .
+target		:{code} a :Item ; :partOfInstrument :{instrument} ; :itemNumber {num}^^xsd:integer ; :itemDescription {description}^^xsd:string ; :minScore {min_score}^^xsd:integer ; :maxScore {max_score}^^xsd:integer ; :measuresSymptom :{symptom} . 
 source		SELECT code, instrument, num, description, min_score, max_score, symptom FROM item
 
 mappingId	items-phq9
-target		:{code} a :PHQ9Item .
+target		:{code} a :PHQ9Item . 
 source		SELECT code FROM item WHERE instrument = 'PHQ9'
 
 mappingId	items-gad7
-target		:{code} a :GAD7Item .
+target		:{code} a :GAD7Item . 
 source		SELECT code FROM item WHERE instrument = 'GAD7'
 
 mappingId	items-hamd17
-target		:{code} a :HAMD17Item .
+target		:{code} a :HAMD17Item . 
 source		SELECT code FROM item WHERE instrument = 'HAMD17'
 
 mappingId	symptoms
-target		:{symptom} a :Symptom .
+target		:{symptom} a :Symptom . 
 source		SELECT DISTINCT symptom FROM item
 
 mappingId	severity-levels
-target		:{level} a :SeverityLevel .
+target		:{level} a :SeverityLevel . 
 source		SELECT DISTINCT level FROM severity_band
 
 mappingId	assessments
-target		:Assessment{id} a :Assessment ; :administeredTo :Patient{patient_id} ; :administeredBy :Doctor{doctor_id} ; :usesInstrument :{instrument} ; :assessmentDate {assessed_at}^^xsd:dateTime .
+target		:Assessment{id} a :Assessment ; :administeredTo :Patient{patient_id} ; :administeredBy :Doctor{doctor_id} ; :usesInstrument :{instrument} ; :assessmentDate {assessed_at}^^xsd:dateTime . 
 source		SELECT id, patient_id, doctor_id, instrument, assessed_at FROM assessment
 
 mappingId	assessments-phq9
-target		:Assessment{id} a :PHQ9Assessment .
+target		:Assessment{id} a :PHQ9Assessment . 
 source		SELECT id FROM assessment WHERE instrument = 'PHQ9'
 
 mappingId	assessments-gad7
-target		:Assessment{id} a :GAD7Assessment .
+target		:Assessment{id} a :GAD7Assessment . 
 source		SELECT id FROM assessment WHERE instrument = 'GAD7'
 
 mappingId	assessments-hamd17
-target		:Assessment{id} a :HAMD17Assessment .
+target		:Assessment{id} a :HAMD17Assessment . 
 source		SELECT id FROM assessment WHERE instrument = 'HAMD17'
 
 mappingId	responses
-target		:Response{id} a :ItemResponse ; :partOfAssessment :Assessment{assessment_id} ; :responseTo :{item_code} ; :itemScore {score}^^xsd:integer . :Assessment{assessment_id} :hasResponse :Response{id} .
+target		:Response{id} a :ItemResponse ; :partOfAssessment :Assessment{assessment_id} ; :responseTo :{item_code} ; :itemScore {score}^^xsd:integer . :Assessment{assessment_id} :hasResponse :Response{id} . 
 source		SELECT id, assessment_id, item_code, score FROM item_response
 
 mappingId	total-score
-target		:Assessment{assessment_id} :hasTotalScore {total}^^xsd:integer .
+target		:Assessment{assessment_id} :hasTotalScore {total}^^xsd:integer . 
 source		SELECT assessment_id, total FROM assessment_total
 
 mappingId	severity
-target		:Assessment{id} :hasSeverityLevel :{level} .
+target		:Assessment{id} :hasSeverityLevel :{level} . 
 source		SELECT a.id, b.level
 			FROM assessment a
 			JOIN assessment_total t ON t.assessment_id = a.id
 			JOIN severity_band b ON b.instrument = a.instrument
-			                    AND t.total BETWEEN b.min_score AND b.max_score
+			AND t.total BETWEEN b.min_score AND b.max_score
 
 mappingId	patient-symptoms
-target		:Patient{patient_id} :hasSymptom :{symptom} .
+target		:Patient{patient_id} :hasSymptom :{symptom} . 
 source		SELECT DISTINCT a.patient_id, i.symptom
 			FROM item_response r
 			JOIN assessment a ON r.assessment_id = a.id
 			JOIN item i ON r.item_code = i.code
 			WHERE r.score >= 2
 ]]
+

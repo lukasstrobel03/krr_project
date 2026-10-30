@@ -1,0 +1,1289 @@
+@prefix : <http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/> .
+
+<http://www.semanticweb.org/lukas/ontologies/2026/9/project_1> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/administeredBy
+:administeredBy rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :Assessment ;
+                rdfs:range :Doctor .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/administeredTo
+:administeredTo rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                owl:inverseOf :hasAssessment ;
+                rdfs:domain :Assessment ;
+                rdfs:range :Patient .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/givesAnswer
+:givesAnswer rdf:type owl:ObjectProperty ;
+             rdfs:domain :Patient ;
+             rdfs:range :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasAnxietySymptom
+:hasAnxietySymptom rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasSymptom ;
+                   rdfs:domain :Patient ;
+                   rdfs:range :AnxietySymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasAssessment
+:hasAssessment rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasDepressionSymptom
+:hasDepressionSymptom rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :hasSymptom ;
+                      rdfs:domain :Patient ;
+                      rdfs:range :DepressionSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasItem
+:hasItem rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         owl:inverseOf :partOfInstrument ;
+         rdfs:domain :Instrument ;
+         rdfs:range :Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasResponse
+:hasResponse rdf:type owl:ObjectProperty ;
+             rdfs:domain :Assessment ;
+             rdfs:range :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasSeverityLevel
+:hasSeverityLevel rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain :Assessment ;
+                  rdfs:range :SeverityLevel .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasSymptom
+:hasSymptom rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/isLessSevereThan
+:isLessSevereThan rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  owl:inverseOf :isMoreSevereThan ;
+                  rdfs:domain :SeverityLevel ;
+                  rdfs:range :SeverityLevel .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/isMoreSevereThan
+:isMoreSevereThan rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/measuresSymptom
+:measuresSymptom rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :Item ;
+                 rdfs:range :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/partOfAssessment
+:partOfAssessment rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain :ItemResponse ;
+                  rdfs:range :Assessment .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/partOfInstrument
+:partOfInstrument rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/relatedToDisorder
+:relatedToDisorder rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain :Symptom ;
+                   rdfs:range :Disorder .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/responseTo
+:responseTo rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :ItemResponse ;
+            rdfs:range :Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/screensFor
+:screensFor rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :Instrument ;
+            rdfs:range :Disorder .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/usesInstrument
+:usesInstrument rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain :Assessment ;
+                rdfs:range :Instrument .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/assessmentDate
+:assessmentDate rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/hasTotalScore
+:hasTotalScore rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/itemDescription
+:itemDescription rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/itemNumber
+:itemNumber rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/itemScore
+:itemScore rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/maxScore
+:maxScore rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/minScore
+:minScore rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1#DoctorPatient
+:DoctorPatient rdf:type owl:Class ;
+               rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/AnxietySymptom
+:AnxietySymptom rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Symptom
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :relatedToDisorder ;
+                                                             owl:hasValue :Anxiety
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Assessment
+:Assessment rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :administeredBy ;
+                              owl:someValuesFrom :Doctor
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :administeredTo ;
+                              owl:someValuesFrom :Patient
+                            ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/CognitiveSymptom
+:CognitiveSymptom rdf:type owl:Class ;
+                  rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/DepressionSymptom
+:DepressionSymptom rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Symptom
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :relatedToDisorder ;
+                                                                owl:hasValue :Depression
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Disorder
+:Disorder rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:oneOf ( :Anxiety
+                                            :Depression
+                                          )
+                              ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Doctor
+:Doctor rdf:type owl:Class ;
+        rdfs:subClassOf :Person ;
+        owl:disjointWith :Patient .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Assessment
+:GAD7Assessment rdf:type owl:Class ;
+                rdfs:subClassOf :Assessment ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasResponse ;
+                                  owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :responseTo ;
+                                                      owl:someValuesFrom :GAD7Item
+                                                    ]
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :usesInstrument ;
+                                  owl:hasValue :GAD7
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasResponse ;
+                                  owl:qualifiedCardinality "7"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :ItemResponse
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasTotalScore ;
+                                  owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                      owl:onDatatype xsd:integer ;
+                                                      owl:withRestrictions ( [ xsd:minInclusive 0
+                                                                             ]
+                                                                             [ xsd:maxInclusive 21
+                                                                             ]
+                                                                           )
+                                                    ]
+                                ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item
+:GAD7Item rdf:type owl:Class ;
+          rdfs:subClassOf :Item ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :partOfInstrument ;
+                            owl:hasValue :GAD7
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasItem ;
+                            owl:qualifiedCardinality "7"^^xsd:nonNegativeInteger ;
+                            owl:onClass :GAD7Item
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :itemScore ;
+                            owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                owl:onDatatype xsd:integer ;
+                                                owl:withRestrictions ( [ xsd:minInclusive 0
+                                                                       ]
+                                                                       [ xsd:maxInclusive 3
+                                                                       ]
+                                                                     )
+                                              ]
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :maxScore ;
+                            owl:hasValue 3
+                          ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Assessment
+:HAMD17Assessment rdf:type owl:Class ;
+                  rdfs:subClassOf :Assessment ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasResponse ;
+                                    owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :responseTo ;
+                                                        owl:someValuesFrom :HAMD17Item
+                                                      ]
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :usesInstrument ;
+                                    owl:hasValue :HAMD17
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasResponse ;
+                                    owl:qualifiedCardinality "17"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :ItemResponse
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTotalScore ;
+                                    owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:minInclusive 0
+                                                                               ]
+                                                                               [ xsd:maxInclusive 52
+                                                                               ]
+                                                                             )
+                                                      ]
+                                  ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item
+:HAMD17Item rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                       [ owl:intersectionOf ( :Doctor
+                                                                              :Patient
+                                                                            ) ;
+                                                         rdf:type owl:Class
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+            rdfs:subClassOf :Item ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :partOfInstrument ;
+                              owl:hasValue :HAMD17
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasItem ;
+                              owl:qualifiedCardinality "17"^^xsd:nonNegativeInteger ;
+                              owl:onClass :HAMD17Item
+                            ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HighRiskPatient
+:HighRiskPatient rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :Patient
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :givesAnswer ;
+                                                              owl:someValuesFrom [ owl:intersectionOf ( :ItemResponse
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty :itemScore ;
+                                                                                                          owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                               owl:onDatatype xsd:integer ;
+                                                                                                                               owl:withRestrictions ( [ xsd:minExclusive 1
+                                                                                                                                                      ]
+                                                                                                                                                    )
+                                                                                                                             ]
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ]
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf :Patient .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Instrument
+:Instrument rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Class ;
+                                  owl:oneOf ( :GAD7
+                                              :HAMD17
+                                              :PHQ9
+                                            )
+                                ] ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :screensFor ;
+                              owl:someValuesFrom :Disorder
+                            ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Item
+:Item rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :measuresSymptom ;
+                        owl:someValuesFrom :Symptom
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :partOfInstrument ;
+                        owl:someValuesFrom :Instrument
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :itemDescription ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :itemScore ;
+                        owl:someValuesFrom xsd:integer
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :maxScore ;
+                        owl:someValuesFrom xsd:integer
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :minScore ;
+                        owl:hasValue 0
+                      ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse
+:ItemResponse rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :partOfAssessment ;
+                                owl:someValuesFrom :Assessment
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :responseTo ;
+                                owl:someValuesFrom :Item
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :itemScore ;
+                                owl:someValuesFrom xsd:integer
+                              ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ModeratePatient
+:ModeratePatient rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :Patient
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :hasAssessment ;
+                                                              owl:someValuesFrom [ owl:intersectionOf ( :Assessment
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty :hasSeverityLevel ;
+                                                                                                          owl:hasValue :Moderate
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ]
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf :Patient ;
+                 owl:disjointWith :SeverePatient .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/MoodSymptom
+:MoodSymptom rdf:type owl:Class ;
+             rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Assessment
+:PHQ9Assessment rdf:type owl:Class ;
+                rdfs:subClassOf :Assessment ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasResponse ;
+                                  owl:allValuesFrom [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :responseTo ;
+                                                      owl:someValuesFrom :PHQ9Item
+                                                    ]
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :usesInstrument ;
+                                  owl:hasValue :PHQ9
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasResponse ;
+                                  owl:qualifiedCardinality "9"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :ItemResponse
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasTotalScore ;
+                                  owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                      owl:onDatatype xsd:integer ;
+                                                      owl:withRestrictions ( [ xsd:minInclusive 0
+                                                                             ]
+                                                                             [ xsd:maxInclusive 27
+                                                                             ]
+                                                                           )
+                                                    ]
+                                ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item
+:PHQ9Item rdf:type owl:Class ;
+          rdfs:subClassOf :Item ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :partOfInstrument ;
+                            owl:hasValue :PHQ9
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasItem ;
+                            owl:qualifiedCardinality "9"^^xsd:nonNegativeInteger ;
+                            owl:onClass :PHQ9Item
+                          ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Patient
+:Patient rdf:type owl:Class ;
+         rdfs:subClassOf :Person ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSymptom ;
+                           owl:someValuesFrom :Symptom
+                         ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Person
+:Person rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PsychomotorSymptom
+:PsychomotorSymptom rdf:type owl:Class ;
+                    rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/RiskSymptom
+:RiskSymptom rdf:type owl:Class ;
+             rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/SeverePatient
+:SeverePatient rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Patient
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasAssessment ;
+                                                            owl:someValuesFrom [ owl:intersectionOf ( :Assessment
+                                                                                                      [ rdf:type owl:Restriction ;
+                                                                                                        owl:onProperty :hasSeverityLevel ;
+                                                                                                        owl:hasValue :Severe
+                                                                                                      ]
+                                                                                                    ) ;
+                                                                                 rdf:type owl:Class
+                                                                               ]
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Patient .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/SeverityLevel
+:SeverityLevel rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Class ;
+                                     owl:oneOf ( :Mild
+                                                 :Moderate
+                                                 :None
+                                                 :Severe
+                                               )
+                                   ] .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/SharedSymptom
+:SharedSymptom rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Symptom
+                                                          [ owl:intersectionOf ( :AnxietySymptom
+                                                                                 :DepressionSymptom
+                                                                               ) ;
+                                                            rdf:type owl:Class
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/SleepSymptom
+:SleepSymptom rdf:type owl:Class ;
+              rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/SomaticSymptom
+:SomaticSymptom rdf:type owl:Class ;
+                rdfs:subClassOf :Symptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Symptom
+:Symptom rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :relatedToDisorder ;
+                           owl:someValuesFrom :Disorder
+                         ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1#HAMD17Item18
+:HAMD17Item18 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Agitation
+:Agitation rdf:type owl:NamedIndividual ,
+                    :PsychomotorSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Anxiety
+:Anxiety rdf:type owl:NamedIndividual ,
+                  :Disorder .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/DepressedMood
+:DepressedMood rdf:type owl:NamedIndividual ,
+                        :MoodSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Depression
+:Depression rdf:type owl:NamedIndividual ,
+                     :Disorder .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Doctor1
+:Doctor1 rdf:type owl:NamedIndividual ,
+                  :Doctor .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Doctor2
+:Doctor2 rdf:type owl:NamedIndividual ,
+                  :Doctor .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/EarlyInsomnia
+:EarlyInsomnia rdf:type owl:NamedIndividual ,
+                        :SleepSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Fatigue
+:Fatigue rdf:type owl:NamedIndividual ,
+                  :SomaticSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/FeelingsOfGuilt
+:FeelingsOfGuilt rdf:type owl:NamedIndividual ,
+                          :MoodSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7
+:GAD7 rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Assessment1
+:GAD7Assessment1 rdf:type owl:NamedIndividual ,
+                          :GAD7Assessment ;
+                 :hasTotalScore 7 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item1
+:GAD7Item1 rdf:type owl:NamedIndividual ,
+                    :GAD7Item ;
+           :itemNumber 1 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item2
+:GAD7Item2 rdf:type owl:NamedIndividual ,
+                    :GAD7Item ;
+           :itemNumber 2 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item3
+:GAD7Item3 rdf:type owl:NamedIndividual ,
+                    :GAD7Item ;
+           :itemNumber 3 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item4
+:GAD7Item4 rdf:type owl:NamedIndividual ,
+                    :GAD7Item ;
+           :itemNumber 4 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item5
+:GAD7Item5 rdf:type owl:NamedIndividual ,
+                    :GAD7Item ;
+           :itemNumber 5 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item6
+:GAD7Item6 rdf:type owl:NamedIndividual ,
+                    :GAD7Item ;
+           :itemNumber 6 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/GAD7Item7
+:GAD7Item7 rdf:type owl:NamedIndividual ,
+                    :GAD7Item ;
+           :itemNumber 7 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17
+:HAMD17 rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Assessment1
+:HAMD17Assessment1 rdf:type owl:NamedIndividual ,
+                            :HAMD17Assessment ;
+                   :administeredBy :Doctor1 ;
+                   :hasTotalScore 34 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item1
+:HAMD17Item1 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item10
+:HAMD17Item10 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item11
+:HAMD17Item11 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item12
+:HAMD17Item12 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item13
+:HAMD17Item13 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item14
+:HAMD17Item14 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item15
+:HAMD17Item15 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item16
+:HAMD17Item16 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item17
+:HAMD17Item17 rdf:type owl:NamedIndividual ,
+                       :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item2
+:HAMD17Item2 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item3
+:HAMD17Item3 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item4
+:HAMD17Item4 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item5
+:HAMD17Item5 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item6
+:HAMD17Item6 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item7
+:HAMD17Item7 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item8
+:HAMD17Item8 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/HAMD17Item9
+:HAMD17Item9 rdf:type owl:NamedIndividual ,
+                      :HAMD17Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Insight
+:Insight rdf:type owl:NamedIndividual ,
+                  :CognitiveSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse1
+:ItemResponse1 rdf:type owl:NamedIndividual ,
+                        :ItemResponse ;
+               :responseTo :GAD7Item1 ;
+               :itemScore 2 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse2
+:ItemResponse2 rdf:type owl:NamedIndividual ,
+                        :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse3
+:ItemResponse3 rdf:type owl:NamedIndividual ,
+                        :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse4
+:ItemResponse4 rdf:type owl:NamedIndividual ,
+                        :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse5
+:ItemResponse5 rdf:type owl:NamedIndividual ,
+                        :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse6
+:ItemResponse6 rdf:type owl:NamedIndividual ,
+                        :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/ItemResponse7
+:ItemResponse7 rdf:type owl:NamedIndividual ,
+                        :ItemResponse .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/LateInsomnia
+:LateInsomnia rdf:type owl:NamedIndividual ,
+                       :SleepSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/LossOfLibido
+:LossOfLibido rdf:type owl:NamedIndividual ,
+                       :SomaticSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/MenstrualChanges
+:MenstrualChanges rdf:type owl:NamedIndividual ,
+                           :SomaticSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/MiddleInsomnia
+:MiddleInsomnia rdf:type owl:NamedIndividual ,
+                         :SleepSymptom ;
+                :relatedToDisorder :Anxiety ,
+                                   :Depression .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Mild
+:Mild rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Moderate
+:Moderate rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/None
+:None rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9
+:PHQ9 rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Assessment1
+:PHQ9Assessment1 rdf:type owl:NamedIndividual ,
+                          :PHQ9Assessment ;
+                 :hasTotalScore 15 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item1
+:PHQ9Item1 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item2
+:PHQ9Item2 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item3
+:PHQ9Item3 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item4
+:PHQ9Item4 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item5
+:PHQ9Item5 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item6
+:PHQ9Item6 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item7
+:PHQ9Item7 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item8
+:PHQ9Item8 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/PHQ9Item9
+:PHQ9Item9 rdf:type owl:NamedIndividual ,
+                    :PHQ9Item .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Patient1
+:Patient1 rdf:type owl:NamedIndividual ,
+                   :Patient ;
+          :hasAssessment :HAMD17Assessment1 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Patient2
+:Patient2 rdf:type owl:NamedIndividual ,
+                   :Patient ;
+          :hasAssessment :PHQ9Assessment1 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Patient3
+:Patient3 rdf:type owl:NamedIndividual ,
+                   :Patient ;
+          :givesAnswer :ItemResponse1 ,
+                       :ItemResponse2 ;
+          :hasAssessment :GAD7Assessment1 .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Restlessness
+:Restlessness rdf:type owl:NamedIndividual ,
+                       :CognitiveSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Retardation
+:Retardation rdf:type owl:NamedIndividual ,
+                      :PsychomotorSymptom .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/SelfHarm
+:SelfHarm rdf:type owl:NamedIndividual ,
+                   :RiskSymptom ;
+          :relatedToDisorder :Anxiety .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Severe
+:Severe rdf:type owl:NamedIndividual ,
+                 :SeverityLevel .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/Suicidality
+:Suicidality rdf:type owl:NamedIndividual ,
+                      :RiskSymptom ;
+             :relatedToDisorder :Depression .
+
+
+###  http://www.semanticweb.org/lukas/ontologies/2026/9/project_1/TroubleRelaxing
+:TroubleRelaxing rdf:type owl:NamedIndividual ,
+                          :SomaticSymptom ;
+                 :relatedToDisorder :Anxiety .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ owl:intersectionOf ( :Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :usesInstrument ;
+                         owl:hasValue :HAMD17
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :administeredBy ;
+                    owl:someValuesFrom :Doctor
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :GAD7Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:minInclusive 10
+                                                                     ]
+                                                                     [ xsd:maxInclusive 14
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Moderate
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :GAD7Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:minInclusive 15
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Severe
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :GAD7Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:minInclusive 5
+                                                                     ]
+                                                                     [ xsd:maxInclusive 9
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Mild
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :GAD7Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:maxInclusive 4
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :None
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :HAMD17Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:minInclusive 24
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Severe
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :HAMD17Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                             owl:onDatatype xsd:integer ;
+                                             owl:withRestrictions ( [ xsd:minInclusive 17
+                                                                    ]
+                                                                    [ xsd:maxInclusive 23
+                                                                    ]
+                                                                  )
+                                           ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Moderate
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :HAMD17Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                             owl:onDatatype xsd:integer ;
+                                             owl:withRestrictions ( [ xsd:minInclusive 7
+                                                                    ]
+                                                                  )
+                                           ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :None
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :HAMD17Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                             owl:onDatatype xsd:integer ;
+                                             owl:withRestrictions ( [ xsd:minInclusive 8
+                                                                    ]
+                                                                    [ xsd:maxInclusive 16
+                                                                    ]
+                                                                  )
+                                           ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Mild
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :PHQ9Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:minInclusive 10
+                                                                     ]
+                                                                     [ xsd:maxInclusive 19
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Moderate
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :PHQ9Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:minInclusive 20
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Severe
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :PHQ9Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:minInclusive 5
+                                                                     ]
+                                                                     [ xsd:maxInclusive 9
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :Mild
+                  ]
+] .
+
+
+[ owl:intersectionOf ( :PHQ9Assessment
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTotalScore ;
+                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                              owl:onDatatype xsd:integer ;
+                                              owl:withRestrictions ( [ xsd:maxInclusive 4
+                                                                     ]
+                                                                   )
+                                            ]
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasSeverityLevel ;
+                    owl:hasValue :None
+                  ]
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Assessment
+                :Instrument
+                :Item
+                :ItemResponse
+                :Person
+                :SeverityLevel
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CognitiveSymptom
+                :MoodSymptom
+                :PsychomotorSymptom
+                :RiskSymptom
+                :SleepSymptom
+                :SomaticSymptom
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :GAD7Assessment
+                :HAMD17Assessment
+                :PHQ9Assessment
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :GAD7Item
+                :HAMD17Item
+                :PHQ9Item
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
